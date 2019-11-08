@@ -20,12 +20,12 @@
 			<mt-field label="详细地址" placeholder="请填写详细地址" type="text" v-model="info.address"></mt-field>
 			<mt-field label="楼层" placeholder="楼层" type="number" v-model="info.floor"></mt-field>
 			<mt-field label="朝向" placeholder="朝向" type="text" v-model="info.direction"></mt-field>
-			<mt-field label="楼龄" placeholder="楼龄" type="number" v-model="info.age"></mt-field>
+			<mt-field label="房龄" placeholder="房龄" type="number" v-model="info.age"></mt-field>
 			
-			<mt-field label="售价" placeholder="售价" type="text" v-model="info.price"></mt-field>
+			<mt-field label="售价" placeholder="单位 万元" type="text" v-model="info.price"></mt-field>
 			<mt-field label="称呼" placeholder="称呼" type="text" rows="4" v-model="info.appellation"></mt-field>
 			<mt-field label="手机号" placeholder="联系方式" type="tel" rows="4" v-model="info.tel"></mt-field>
-			<mt-field label="首付" placeholder="首付、月供" type="text" rows="4" v-model="info.downPayment"></mt-field>
+			<mt-field label="首付" placeholder="单位 万元" type="text" rows="4" v-model="info.downPayment"></mt-field>
 			<div class="facility">
 				装修状态
 				<my-radio-button v-model='info.fitment' :data="fitment"></my-radio-button>

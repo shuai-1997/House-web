@@ -55,6 +55,7 @@ export default new Router({
       mate:["注册"]
     },
     {
+    	
       path: '/findpwd',
       name: 'findpwd',
       component: findpwd,

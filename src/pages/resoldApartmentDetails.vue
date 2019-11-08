@@ -9,18 +9,18 @@
 		  <mt-swipe-item><img src="../assets/image/banner-lun (2).jpg"/></mt-swipe-item>
 		  <mt-swipe-item><img src="../assets/image/banner-lun (5).jpg"/></mt-swipe-item>
 		</mt-swipe>
-		<h2>扶沟县 建业新城 3室两厅</h2>
+		<h2>{{data.name}}</h2>
 		<ul class="nav">
 			<li>
-				<p>61万</p>
+				<p>{{data.price}}万</p>
 				<span>总价</span>
 			</li>
 			<li>
-				<p>三室2厅0卫</p>
+				<p>{{data.houseType}}</p>
 				<span>户型</span>
 			</li>
 			<li>
-				<p><i>119.91m</i><sup>2</sup></p>
+				<p><i>{{data.acreage}}m</i><sup>2</sup></p>
 				<span>面积</span>
 			</li>
 		</ul>
@@ -29,23 +29,23 @@
 			<div class="onerow">
 				<p><span>单价</span><i>5087元/m</i><sup>2</sup> </p>
 				
-				<p><span>楼层</span>3/8层</p>
+				<p><span>楼层</span>{{data.floor}}层</p>
 			</div>
 			<div class="onerow">
-				<p><span>朝向</span>南</p>
-				<p><span>发布</span>2019/1/23</p>
+				<p><span>朝向</span>{{data.direction}}</p>
+				<p><span>发布</span>{{formattingDate(data.time)}}</p>
 			</div>
-			<p class="row"><span>首付</span>约22.73万，月供2253元</p>
-			<p class="row"><span>小区</span>建业新城（扶沟县-东方明珠购物广场）</p>
+			<p class="row"><span>首付</span>约{{data.downPayment}}万，月供2253元</p>
+			<p class="row"><span>小区</span>{{data.name}}</p>
 			<p class="row"><span>接电时间：</span>09:00-22:00</p>
 		</div>
 		<div class="evaluate">
 			<h3>业主自评</h3>
-			<p>建业新城建业新城建业新城建业新城建业新城建业新城建业新城建业新城建业新城建业新城建业新城建业新城</p>
+			<p>{{data.introduce}}</p>
 		</div>
 		<div class="footer">
 			<div class="ren">
-				<p>高女士</p>
+				<p>{{data.appellation}}</p>
 				<span>业主</span>
 			</div>
 			<div class="btn">
@@ -59,7 +59,26 @@
 </template>
 
 <script>
-	
+	export default{
+		data(){
+			return{
+				data:{},
+				removeImg:"removeImg"
+			}
+		},
+		created(){
+			this.data=this.$route.query
+		},
+		methods:{
+			formattingDate(time){
+    		time=new Date(time)
+    		let  year= time.getFullYear()
+    		let mouth=time.getMonth()+1
+    		let day=time.getDate()
+    		return year+"/"+mouth+"/"+day
+    	},
+		}
+	}
 </script>
 
 <style lang="less" scoped="scoped">

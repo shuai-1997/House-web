@@ -5,7 +5,7 @@
 			<i class="el-icon-star-off"></i>
 		</div>
 		<mt-swipe :auto="0" style="height:4rem;">
-		  <mt-swipe-item v-for="item in data.imgArr"><img :src="item"/></mt-swipe-item>
+		  <mt-swipe-item v-for="(item,index) in data.imgArr" :key='index'><img :src="item"/></mt-swipe-item>
 		  
 		</mt-swipe>
 		<h2>{{data.name}}</h2>

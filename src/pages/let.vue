@@ -58,20 +58,22 @@
 		</div>
 		<mt-loadmore  :auto-fill='false'  topDropText="释放刷新" :bottom-method="loadBottom"    ref="loadmore">
 		  <ul class="houseList" id="houseList" style="height: 11rem;">
-			<router-link   :to="{name:'letDetails',query:item}" tag="div" v-for='item in list'>
-				<li >
+		  	<div v-for='(item,index) in list' :key='index'>
+		  		<router-link   :to="{name:'letDetails',query:item}" tag="div" >
+					<li >
+						<div class="list-left">
+							<img :src="item.imgArr[0]"/>
+						</div>
+						<div class="list-right">
+							<h5>{{item.name}}</h5>
+							<p><span class="el-icon-location-information"></span>{{item.address}}</p>
+							<p class="label"><span>个人房源</span> <span>随时入住</span></p>
+							<p><i>{{item.price}}元/月</i></p>
+						</div>
+					</li>
+				</router-link>
+		  	</div>
 			
-					<div class="list-left">
-						<img :src="item.imgArr[0]"/>
-					</div>
-					<div class="list-right">
-						<h5>{{item.name}}</h5>
-						<p><span class="el-icon-location-information"></span>{{item.address}}</p>
-						<p class="label"><span>个人房源</span> <span>随时入住</span></p>
-						<p><i>{{item.price}}元/月</i></p>
-					</div>
-				</li>
-			</router-link>
 		  </ul>
 		</mt-loadmore>
 		
@@ -110,8 +112,8 @@
 					type:[], //出租类型
 					houseType:"",//户型
 					sort:1, //排序   其中 1 为升序排列，而-1是用于降序排列.
-					orientation:[], //方向：东南西北
-					bedroomNum:[], //卧室数量
+					orientation:['南'], //方向：东南西北
+					bedroomNum:[1], //卧室数量
 				},
 				flag:{
 					pricePlan:true,
@@ -178,14 +180,14 @@
 		},
 		
 		async created(){
-				console.log(this.city)
+				
 				let Data= await this.$http.get("http://127.0.0.1:3000/city?pid="+this.city.id)
 				this.citys=Data.data
-				console.log(this.citys)
+			
 				this.submit("first")
-				console.log()
+				
 				let box=document.getElementById("houseList")
-				console.log(document.documentElement.clientHeight)
+				
 				box.style.height=document.documentElement.clientHeight -160+"px"
 		},
 		
@@ -236,16 +238,12 @@
 					this.list = this.list.concat(res.data);
 				}
 			},
-			sort1(){
-				
-				this.res.sort=1
-				this.$refs.bbb.$data.activeFlag=''
-				
-			},
+			
 			sort(value){
 				
 				this.res.sort=value
 				this.$refs.bbb.$data.activeFlag=''
+				this.submit("first")
 				
 			},
 			loadBottom() {
